@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import './App.css'
-import Grid from './components/Grid.jsx'
+import './styles/App.css'
+import Game from './components/Game'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Grid/>
+      <Game/>
     </>
   )
 }

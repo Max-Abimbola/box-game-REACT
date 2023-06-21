@@ -1,12 +1,9 @@
 import { useState } from 'react'
-import '../styles/Grid.css'
+import '../styles/DrawingGrid.css'
 
-export default function Grid(props){
-    const [gridArray, setGridArray] = useState([
-        [1,0,1],
-        [0,1,1],
-        [1,0,1]
-    ])
+export default function DrawingGrid(props){
+
+    const [gridArray, setGridArray] = useState(props.gridMatrix)
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -19,11 +16,13 @@ export default function Grid(props){
         gridArray[row][col] === 1 ? gridArrayCopy[row][col] = 0 : gridArrayCopy[row][col] = 1
 
         setGridArray(gridArrayCopy)
+        props.setDrawingGrid(gridArrayCopy)
+        props.onChange()
     }
     return (
 
         <>
-            <div className='grid-container'>
+            <div className='drawing-grid-container'>
                 {
                     gridArray.map((row, rowIndex) => (
                             row.map((col, colIndex) => (
