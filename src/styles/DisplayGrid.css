@@ -1,7 +1,6 @@
 
 
 .display-grid-container {
-    position:absolute;
     display: grid;
     grid-template-rows: repeat(3,1fr);
     grid-template-columns: repeat(3,1fr);
@@ -10,6 +9,6 @@
     top:20%;
     left:50%;
     transform: translate(-50%,-20%);
-
+    position: absolute;
 
 }

@@ -17,7 +17,6 @@ export default function DrawingGrid(props){
 
         setGridArray(gridArrayCopy)
         props.setDrawingGrid(gridArrayCopy)
-        props.onChange()
     }
     return (
 
@@ -33,10 +32,8 @@ export default function DrawingGrid(props){
                                 key={`${rowIndex}-${colIndex}`}
                                 style={{
                                     backgroundColor: gridArray[rowIndex][colIndex] === 1 ? '#3C3AAB' : 'white',
-                                    transition: 'background-color 0.3s ease'
+                                    /* transition: 'background-color 0.3s ease' */
                                 }}
-
-                                     /* gridArray[rowIndex][colIndex] === 1 ? {backgroundColor:'#3C3AAB'} : {backgroundColor:'white'} */
                                 onClick={handleClick}
                                 >
                                 </div>
