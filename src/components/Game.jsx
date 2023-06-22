@@ -4,12 +4,16 @@ import DisplayGrid from './DisplayGrid.jsx'
 import '../styles/Game.css'
 
 export default function Game(){
+
+    const [stageNumber, setStageNumber] = useState(0)
+
     const [drawingGrid, setDrawingGrid] = useState([
-        [1,0,0],
-        [0,1,1],
-        [1,0,1]
+        [0,0,0],
+        [0,0,0],
+        [0,0,0]
 
     ]);
+
     const [displayGrid, setDisplayGrid] = useState([
         [1,0,1],
         [0,1,1],
@@ -18,7 +22,11 @@ export default function Game(){
 
     const [gameState, setGamestate] = useState('isRunning')
     const [timerIsActive, setTimerIsActive] = useState(true)
+    const [timerId, setTimerId] = useState(null)
 
+    const restGame = () => {
+        
+    }
 
     useEffect(() => {
         
@@ -27,6 +35,7 @@ export default function Game(){
                 console.log('times up!')
                 setTimerIsActive(false)
             },3000)
+            setTimerId(timer)
         }
 
         if((JSON.stringify(drawingGrid) === JSON.stringify(displayGrid)) && timerIsActive === true){
@@ -38,7 +47,7 @@ export default function Game(){
             const highlghtedBoxes = document.querySelectorAll('.grid-box')
 
             highlghtedBoxes.forEach((box)=>{
-                console.log(box.style.backgroundColor)
+                box.style.pointerEvents = 'none';
                 if(box.style.backgroundColor === 'rgb(60, 58, 171)'){
                     box.style.backgroundColor = 'green'
                 }
@@ -57,7 +66,7 @@ export default function Game(){
             const highlghtedBoxes = document.querySelectorAll('.grid-box')
 
             highlghtedBoxes.forEach((box)=>{
-                console.log(box.style.backgroundColor)
+                box.style.pointerEvents = 'none';
                 if(box.style.backgroundColor === 'rgb(60, 58, 171)'){
                     box.style.backgroundColor = '#962525'
                 }
@@ -65,7 +74,7 @@ export default function Game(){
         }
         
         return () => {
-            clearTimeout(timer)
+            clearTimeout(timerId)
         }
 
     }, [drawingGrid, displayGrid, timerIsActive])

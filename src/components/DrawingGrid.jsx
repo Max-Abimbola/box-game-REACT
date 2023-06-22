@@ -26,7 +26,7 @@ export default function DrawingGrid(props){
                     gridArray.map((row, rowIndex) => (
                             row.map((col, colIndex) => (
                                 <div
-                                className="grid-box"
+                                className={"grid-box " + "grid-box-drawing"}
                                 row={rowIndex}
                                 col={colIndex}
                                 key={`${rowIndex}-${colIndex}`}
