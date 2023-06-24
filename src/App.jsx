@@ -1,60 +1,10 @@
 import { useState, useEffect } from 'react'
 import './styles/App.css'
 import Game from './components/Game'
+import randomString from './helpers/randomString'
 
 function App() {
-  const [stageArray, setStageArray] = useState([
-    [
-        [1,0,0],
-        [0,0,0],
-        [0,0,0]
-    ],
-    [
-        [0,0,1],
-        [0,0,1],
-        [1,0,1]
-    ],
-    [
-        [0,0,1],
-        [0,1,0],
-        [0,0,0]
-    ],
-    [
-        [1,0,1],
-        [0,1,0],
-        [1,0,0]
-    ],
-    [
-        [1,1,1],
-        [1,1,1],
-        [0,0,0]
-    ],
-    [
-        [1,0,1],
-        [0,1,0],
-        [1,0,1]
-    ],
-    [
-        [0,0,1],
-        [0,1,0],
-        [0,0,0]
-    ],
-    [
-        [1,0,1],
-        [0,1,0],
-        [1,0,0]
-    ],
-    [
-        [1,1,1],
-        [1,1,1],
-        [0,0,0]
-    ],
-    [
-        [1,0,1],
-        [0,1,0],
-        [1,0,1]
-    ]
-  ])
+  const [stageArray, setStageArray] = useState(randomString(5,null,null))
 
   const [stageNumber, setStageNumber] = useState(0)
 
