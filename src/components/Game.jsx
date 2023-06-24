@@ -18,11 +18,12 @@ export default function Game(props){
     const [timerIsActive, setTimerIsActive] = useState(true)
     const [timerId, setTimerId] = useState(null)
 
+
     useEffect(() => {
         if (timerIsActive) {
           const intervalId = setInterval(() => {
             
-            if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid) && timerIsActive === true) {
+            if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
               setGameState('isLost');
     
               const body = document.getElementById('body');
@@ -39,7 +40,7 @@ export default function Game(props){
     
               console.log('YOU LOSE');
             }
-          }, 1000);
+          }, 3000);
           setTimerId(intervalId);
         }
     
@@ -49,7 +50,7 @@ export default function Game(props){
       }, [timerIsActive, drawingGrid, displayGrid]);
     
     useEffect(() => {
-        if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive === true) {
+        if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive) {
         setGameState('isWon');
 
         const body = document.getElementById('body');
@@ -70,10 +71,10 @@ export default function Game(props){
         const intervalId = setInterval(()=>{
             clearInterval(intervalId)
             props.isWon()
-        },1000);
+        },500);
         }
 
-
+5
     }, [drawingGrid, displayGrid, timerIsActive]);
 
 
@@ -81,13 +82,6 @@ export default function Game(props){
         <>
           <div
             id='game-container'
-/*             className={
-              gameState === 'isWon'
-                ? 'winning-screen'
-                : gameState === 'isLost'
-                ? 'losing-screen'
-                : null
-            } */
           >
             <DisplayGrid gridMatrix={displayGrid} />
             <DrawingGrid
