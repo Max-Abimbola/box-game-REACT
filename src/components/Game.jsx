@@ -21,12 +21,8 @@ export default function Game(props){
     useEffect(() => {
         if (timerIsActive) {
           const intervalId = setInterval(() => {
-            clearInterval(intervalId);
-    
-            if (
-              JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid) &&
-              timerIsActive === true
-            ) {
+            
+            if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid) && timerIsActive === true) {
               setGameState('isLost');
     
               const body = document.getElementById('body');
@@ -43,7 +39,7 @@ export default function Game(props){
     
               console.log('YOU LOSE');
             }
-          }, 5000);
+          }, 1000);
           setTimerId(intervalId);
         }
     
@@ -53,13 +49,8 @@ export default function Game(props){
       }, [timerIsActive, drawingGrid, displayGrid]);
     
     useEffect(() => {
-    if (
-        JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) &&
-        timerIsActive === true
-    ) {
+        if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive === true) {
         setGameState('isWon');
-
-        props.isWon()
 
         const body = document.getElementById('body');
         body.style.backgroundColor = '#65BF63';
@@ -68,27 +59,35 @@ export default function Game(props){
 
         highlightedBoxes.forEach((box) => {
         box.style.pointerEvents = 'none';
+
         if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
             box.style.backgroundColor = 'green';
         }
+
+        
         });
 
-        console.log('YOU WIN');
+        const intervalId = setInterval(()=>{
+            clearInterval(intervalId)
+            props.isWon()
+        },1000);
+        }
 
-    }
+
     }, [drawingGrid, displayGrid, timerIsActive]);
 
 
       return (
         <>
           <div
-            className={
+            id='game-container'
+/*             className={
               gameState === 'isWon'
                 ? 'winning-screen'
                 : gameState === 'isLost'
                 ? 'losing-screen'
                 : null
-            }
+            } */
           >
             <DisplayGrid gridMatrix={displayGrid} />
             <DrawingGrid

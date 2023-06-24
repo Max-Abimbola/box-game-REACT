@@ -26,7 +26,12 @@ function App() {
   const [showComponent, setShowComponent] = useState(true)
 
   const isWon = () => {
+    console.log('wtf?')
     setStageNumber(stageNumber + 1)
+    const gameContainer = document.getElementById('game-container')
+    const body = document.getElementById('body');
+    body.style.backgroundColor = ''
+    body.style.backgroundColor = '#7B71B8';
   }
 
     return (
