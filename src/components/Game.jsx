@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import DrawingGrid from './DrawingGrid.jsx'
 import DisplayGrid from './DisplayGrid.jsx'
 import '../styles/Game.css'

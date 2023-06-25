@@ -4,7 +4,7 @@ import Game from './components/Game'
 import randomString from './helpers/randomString'
 
 function App() {
-  const [stageArray, setStageArray] = useState(randomString(10,null,null))
+  const [stageArray, setStageArray] = useState(randomString(1,null,null))
 
   const [stageNumber, setStageNumber] = useState(0)
 
@@ -15,11 +15,12 @@ function App() {
     const body = document.getElementById('body');
     body.style.backgroundColor = ''
     body.style.backgroundColor = '#7B71B8';
+/*     setStageArray(randomString(1,null,null)) */
   }
 
     return (
       <>
-        {showComponent && <Game isWon={isWon} stageGrid={stageArray[stageNumber]} key={stageNumber}/>}
+        {showComponent && <Game isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber}/>}
       </>
     )
 }
