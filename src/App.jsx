@@ -4,7 +4,7 @@ import Game from './components/Game'
 import randomString from './helpers/randomString'
 
 function App() {
-  const [stageArray, setStageArray] = useState(randomString(5,null,null))
+  const [stageArray, setStageArray] = useState(randomString(10,null,null))
 
   const [stageNumber, setStageNumber] = useState(0)
 

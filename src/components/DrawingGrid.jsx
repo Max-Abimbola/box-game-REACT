@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../styles/DrawingGrid.css'
 
 export default function DrawingGrid(props){
 
     const [gridArray, setGridArray] = useState(props.gridMatrix)
     const [mouseDown,setMouseDown] = useState(false)
-    const [mouseUp, setMouseUp] = useState(false)
 
     const handleMouseDown = (e) => {
         e.preventDefault()
@@ -21,8 +20,6 @@ export default function DrawingGrid(props){
 
         setGridArray(gridArrayCopy)
         props.setDrawingGrid(gridArrayCopy)
-
-
 
     }
 
@@ -45,6 +42,18 @@ export default function DrawingGrid(props){
             props.setDrawingGrid(gridArrayCopy)
         }
     }
+
+    useEffect(() => {
+        document.addEventListener('mouseover', handleMouseOver)
+        document.addEventListener('mousedown', handleMouseDown)
+        document.addEventListener('mouseup', handleMouseUp)
+        return () => {
+            document.removeEventListener('mouseover', handleMouseOver)
+            document.removeEventListener('mousedown', handleMouseDown)
+            document.removeEventListener('mouseup', handleMouseUp)
+        }
+    }, [mouseDown])
+    
     return (
 
         <>
@@ -59,11 +68,7 @@ export default function DrawingGrid(props){
                                 key={`${rowIndex}-${colIndex}`}
                                 style={{
                                     backgroundColor: gridArray[rowIndex][colIndex] === 1 ? '#3C3AAB' : 'white',
-                                    /* transition: 'background-color 0.3s ease' */
                                 }}
-                                onMouseDown={handleMouseDown}
-                                onMouseUp={handleMouseUp}
-                                onMouseOver={handleMouseOver}
                                 >
                                 </div>
                             ))

@@ -5,10 +5,10 @@
     display: grid;
     grid-template-rows: repeat(3,1fr);
     grid-template-columns: repeat(3,1fr);
-    height:400px;
-    width:400px;
-    top:70%;
+    height:500px;
+    width:500px;
+    top:80%;
     left:50%;
-    transform: translate(-50%,-70%);
+    transform: translate(-50%,-80%);
 
 }

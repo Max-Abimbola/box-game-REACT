@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import DrawingGrid from './DrawingGrid.jsx'
 import DisplayGrid from './DisplayGrid.jsx'
 import '../styles/Game.css'
@@ -8,7 +8,8 @@ export default function Game(props){
     const initialDrawingGrid = [
             [0,0,0],
             [0,0,0],
-            [0,0,0]
+            [0,0,0],
+
       ];
 
     const [stageNumber, setStageNumber] = useState(0)
@@ -21,7 +22,10 @@ export default function Game(props){
 
     useEffect(() => {
         if (timerIsActive) {
+
+
           const intervalId = setInterval(() => {
+
             
             if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
               setGameState('isLost');
@@ -39,8 +43,9 @@ export default function Game(props){
               });
     
               console.log('YOU LOSE');
+              clearInterval(timerId)
             }
-          }, 3000);
+          }, 5000);
           setTimerId(intervalId);
         }
     
@@ -78,11 +83,15 @@ export default function Game(props){
     }, [drawingGrid, displayGrid, timerIsActive]);
 
 
+
       return (
         <>
+        
           <div
             id='game-container'
           >
+            
+
             <DisplayGrid gridMatrix={displayGrid} />
             <DrawingGrid
               gridMatrix={drawingGrid}

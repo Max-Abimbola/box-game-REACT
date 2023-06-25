@@ -10,3 +10,10 @@
     background-color: #AE6767; 
 
 }
+
+#game-container {
+/*     top:70%;
+    left:50%;
+    transform: translate(-70%,-50%);
+    position: absolute; */
+}

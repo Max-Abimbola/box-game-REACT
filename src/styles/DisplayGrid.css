@@ -6,9 +6,10 @@
     grid-template-columns: repeat(3,1fr);
     height:200px;
     width:200px;
-    top:20%;
+    top:15%;
     left:50%;
-    transform: translate(-50%,-20%);
+    transform: translate(-50%,-15%);
     position: absolute;
+
 
 }
