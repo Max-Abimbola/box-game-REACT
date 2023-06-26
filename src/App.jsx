@@ -9,6 +9,8 @@ function App() {
   const [stageNumber, setStageNumber] = useState(0)
 
   const [showComponent, setShowComponent] = useState(true)
+  
+  const [score, setScore] = useState(0)
 
   const isWon = () => {
     setStageNumber(stageNumber + 1)
@@ -18,9 +20,14 @@ function App() {
 /*     setStageArray(randomString(1,null,null)) */
   }
 
+  const incrementScore = () => {
+    setScore(score + 1)
+  }
+
+
     return (
       <>
-        {showComponent && <Game isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber}/>}
+        {showComponent && <Game isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber} score={score} incrementScore={incrementScore}/>}
       </>
     )
 }

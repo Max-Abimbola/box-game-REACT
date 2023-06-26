@@ -9,7 +9,6 @@ const randomString = function (dimensions, difficulty/*TODO: Add difficulty para
         }
         grid.push(row)
     }
-    console.log('grid: ',grid)
     return grid
 
 }

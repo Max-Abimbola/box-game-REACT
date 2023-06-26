@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import DrawingGrid from './DrawingGrid.jsx'
 import DisplayGrid from './DisplayGrid.jsx'
 import ResultScreen from './ResultScreen.jsx'
@@ -21,7 +21,9 @@ export default function Game(props){
     const [timerIsActive, setTimerIsActive] = useState(true)
     const [timerId, setTimerId] = useState(null)
 
-    
+    const score = useRef(0)
+    const [scoreDisplay, setScoreDisplay] = useState(0)
+
 
     useEffect(() => {
         if (timerIsActive) {
@@ -48,7 +50,7 @@ export default function Game(props){
     
               clearInterval(timerId)
             }
-          }, 3001);
+          }, 3000);
 
           setTimerId(intervalId);
         }
@@ -62,6 +64,8 @@ export default function Game(props){
     useEffect(() => {
         if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive) {
         setGameState('isWon');
+        
+        props.incrementScore()
 
 
         const body = document.getElementById('body');
@@ -96,7 +100,7 @@ export default function Game(props){
 
       return (
         <>
-        
+
           <div
             id='game-container'
           >
@@ -107,6 +111,7 @@ export default function Game(props){
               setDrawingGrid={setDrawingGrid}
               setTimerIsActive={setTimerIsActive}
             />
+            <h1 id='score-display'>{props.score}</h1>
           </div>
         </>
       );
