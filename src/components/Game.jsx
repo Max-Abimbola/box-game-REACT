@@ -50,6 +50,10 @@ export default function Game(props){
     
               clearInterval(timerId)
             }
+
+            
+
+            
           }, 3000);
 
           setTimerId(intervalId);
