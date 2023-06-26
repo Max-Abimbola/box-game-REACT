@@ -93,6 +93,8 @@ export default function Game(props){
 
         const intervalId = setInterval(()=>{
             clearInterval(intervalId)
+            body.style.backgroundColor = ''
+            body.style.backgroundColor = '#7B71B8';
             props.isWon()
         },250);
         }
