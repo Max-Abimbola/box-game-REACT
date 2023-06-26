@@ -60,14 +60,15 @@ export default function Game(props){
           setTimerId(intervalId);
         }
     
-        return () => {
+/*         return () => {
  
             clearInterval(timerId);
-        };
+        }; */
       }, [timerIsActive, drawingGrid, displayGrid]);
     
     useEffect(() => {
       if(timerIsActive){
+        
         if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive) {
           setGameState('isWon');
           
