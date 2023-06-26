@@ -67,38 +67,42 @@ export default function Game(props){
       }, [timerIsActive, drawingGrid, displayGrid]);
     
     useEffect(() => {
+      if(timerIsActive){
         if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive) {
-        setGameState('isWon');
-        
-        props.incrementScore()
+          setGameState('isWon');
+          
+          props.incrementScore()
+  
+  
+          const body = document.getElementById('body');
+          body.style.backgroundColor = '#65BF63';
+  
+          const backgroundTimer = document.getElementById('result-screen')
+          backgroundTimer.style.display = 'none'
+  
+  
+          const highlightedBoxes = document.querySelectorAll('.grid-box');
+  
+          highlightedBoxes.forEach((box) => {
+          box.style.pointerEvents = 'none';
+  
+          if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
+              box.style.backgroundColor = 'green';
+          }
+  
+          
+          });
+  
+          const intervalId = setInterval(()=>{
+              clearInterval(intervalId)
+              body.style.backgroundColor = ''
+              body.style.backgroundColor = '#7B71B8';
+              props.isWon()
+          },250);
+          }
 
+      }
 
-        const body = document.getElementById('body');
-        body.style.backgroundColor = '#65BF63';
-
-        const backgroundTimer = document.getElementById('result-screen')
-        backgroundTimer.style.display = 'none'
-
-
-        const highlightedBoxes = document.querySelectorAll('.grid-box');
-
-        highlightedBoxes.forEach((box) => {
-        box.style.pointerEvents = 'none';
-
-        if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
-            box.style.backgroundColor = 'green';
-        }
-
-        
-        });
-
-        const intervalId = setInterval(()=>{
-            clearInterval(intervalId)
-            body.style.backgroundColor = ''
-            body.style.backgroundColor = '#7B71B8';
-            props.isWon()
-        },250);
-        }
 
 5
     }, [drawingGrid, displayGrid, timerIsActive]);
