@@ -15,8 +15,7 @@ function App() {
   const isWon = () => {
     setStageNumber(stageNumber + 1)
     const body = document.getElementById('body');
-    body.style.backgroundColor = ''
-    body.style.backgroundColor = '#7B71B8';
+
 /*     setStageArray(randomString(1,null,null)) */
   }
 
