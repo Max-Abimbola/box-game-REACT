@@ -7,8 +7,26 @@
     grid-template-columns: repeat(3,1fr);
     height:500px;
     width:500px;
+
     top:80%;
     left:50%;
     transform: translate(-50%,-80%);
 
+}
+
+
+@media (max-width: 773px) {
+
+    .drawing-grid-container {
+        position:absolute;
+        display: grid;
+        grid-template-rows: repeat(3,1fr);
+        grid-template-columns: repeat(3,1fr);
+        height: 30vh;
+        width: 60vw;
+        top:70%;
+        left:50%;
+        transform: translate(-50%,-70%);
+    
+    }
 }

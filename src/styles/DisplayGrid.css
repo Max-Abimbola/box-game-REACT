@@ -5,11 +5,32 @@
     grid-template-rows: repeat(3,1fr);
     grid-template-columns: repeat(3,1fr);
     height:200px;
-    width:200px;
+    width:200px; 
+
     top:15%;
     left:50%;
     transform: translate(-50%,-15%);
     position: absolute;
+
+
+}
+
+
+@media (max-width: 773px) {
+    .display-grid-container {
+        display: grid;
+        grid-template-rows: repeat(3,1fr);
+        grid-template-columns: repeat(3,1fr);
+        height:150px;
+        width:150px; 
+    
+        top:30%;
+        left:50%;
+        transform: translate(-50%,-30%);
+        position: absolute;
+    
+    
+    }
 
 
 }
