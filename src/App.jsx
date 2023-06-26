@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import './styles/App.css'
 import Game from './components/Game'
-import randomString from './helpers/randomString'
+import playSound from './helpers/playSound.jsx'
+import randomString from './helpers/randomString.js'
 
 function App() {
   const [stageArray, setStageArray] = useState(randomString(1,null,null))
@@ -14,15 +15,14 @@ function App() {
 
   const isWon = () => {
     setStageNumber(stageNumber + 1)
+    playSound()
     const body = document.getElementById('body');
 
-/*     setStageArray(randomString(1,null,null)) */
   }
 
   const incrementScore = () => {
     setScore(score + 1)
   }
-
 
     return (
       <>
