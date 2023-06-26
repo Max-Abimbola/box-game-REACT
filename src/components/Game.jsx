@@ -34,6 +34,7 @@ export default function Game(props){
 
             
             if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
+              clearInterval(timerId)
               setGameState('isLost');
 
               const body = document.getElementById('body');
@@ -48,7 +49,7 @@ export default function Game(props){
                 }
               });
     
-              clearInterval(timerId)
+              
             }
 
             
