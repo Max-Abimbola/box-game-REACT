@@ -1,0 +1,16 @@
+.result-screen-three-seconds {
+    position: absolute;
+    height: 100vh;
+    background-color: #2E2D72;
+    left:0;
+    top:0;
+    animation-name: changeWidth;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+
+}
+
+@keyframes changeWidth {
+    0% { width: 0vw; }
+    100% { width: 100vw}
+}

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import DrawingGrid from './DrawingGrid.jsx'
 import DisplayGrid from './DisplayGrid.jsx'
+import ResultScreen from './ResultScreen.jsx'
+
 import '../styles/Game.css'
 
 export default function Game(props){
@@ -19,17 +21,19 @@ export default function Game(props){
     const [timerIsActive, setTimerIsActive] = useState(true)
     const [timerId, setTimerId] = useState(null)
 
+    
 
     useEffect(() => {
         if (timerIsActive) {
 
 
           const intervalId = setInterval(() => {
+            
 
             
             if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
               setGameState('isLost');
-    
+
               const body = document.getElementById('body');
               body.style.backgroundColor = '#AE6767';
     
@@ -42,15 +46,16 @@ export default function Game(props){
                 }
               });
     
-              console.log('YOU LOSE');
               clearInterval(timerId)
             }
-          }, 5000);
+          }, 3001);
+
           setTimerId(intervalId);
         }
     
         return () => {
-          clearInterval(timerId);
+ 
+            clearInterval(timerId);
         };
       }, [timerIsActive, drawingGrid, displayGrid]);
     
@@ -58,8 +63,13 @@ export default function Game(props){
         if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive) {
         setGameState('isWon');
 
+
         const body = document.getElementById('body');
         body.style.backgroundColor = '#65BF63';
+
+        const backgroundTimer = document.getElementById('result-screen')
+        backgroundTimer.style.display = 'none'
+
 
         const highlightedBoxes = document.querySelectorAll('.grid-box');
 
@@ -76,7 +86,7 @@ export default function Game(props){
         const intervalId = setInterval(()=>{
             clearInterval(intervalId)
             props.isWon()
-        },500);
+        },250);
         }
 
 5
@@ -90,8 +100,7 @@ export default function Game(props){
           <div
             id='game-container'
           >
-            
-
+            <ResultScreen/>
             <DisplayGrid gridMatrix={displayGrid} />
             <DrawingGrid
               gridMatrix={drawingGrid}
