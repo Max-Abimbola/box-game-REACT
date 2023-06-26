@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './styles/App.css'
 import Game from './components/Game'
-import playSound from './helpers/playSound.jsx'
+/* import playSound from './helpers/playSound.jsx' */
 import randomString from './helpers/randomString.js'
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
   const isWon = () => {
     setStageNumber(stageNumber + 1)
-    playSound()
+/*     playSound() */
     const body = document.getElementById('body');
 
   }
