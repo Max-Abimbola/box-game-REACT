@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import DrawingGrid from './DrawingGrid.jsx'
 import DisplayGrid from './DisplayGrid.jsx'
 import ResultScreen from './ResultScreen.jsx'
-
+import ReactHowler from 'react-howler'
+import playSound from '../helpers/playSound.jsx'
 import '../styles/Game.css'
 
 export default function Game(props){
@@ -20,6 +21,8 @@ export default function Game(props){
     const [gameState, setGameState] = useState('isRunning')
     const [timerIsActive, setTimerIsActive] = useState(true)
     const [timerId, setTimerId] = useState(null)
+    const [winningSoundIsPlaying, setWinningSoundIsPlaying] = useState(false)
+    const [losingSoundIsPlaying, setLosingSoundIsPlaying] = useState(false)
 
     const score = useRef(0)
     const [scoreDisplay, setScoreDisplay] = useState(0)
@@ -35,6 +38,8 @@ export default function Game(props){
 
           
           props.incrementScore()
+
+          setWinningSoundIsPlaying(true)
   
   
           const body = document.getElementById('body');
@@ -62,14 +67,15 @@ export default function Game(props){
               body.style.backgroundColor = '#7B71B8';
 
               props.isWon()
+              
 
-          },250);
+          },400);
           }
 
       }
 
 
-    }, [drawingGrid, displayGrid, timerIsActive]);
+    }, [drawingGrid, displayGrid, timerIsActive, winningSoundIsPlaying]);
 
 
     useEffect(() => {
@@ -77,7 +83,7 @@ export default function Game(props){
 
 
           const intervalId = setInterval(() => {
-            
+            setLosingSoundIsPlaying(true)
 
             
             if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
@@ -119,10 +125,25 @@ export default function Game(props){
 
       return (
         <>
+{/*           <ReactHowler 
+          src='src\assets\correct-answer-sound-1.wav'
+          
+          
+          playing={true}/> */}
 
           <div
             id='game-container'
           >
+            <ReactHowler 
+            /* src='src\assets\correct-answer-sound-1.wav' */
+            src='src/assets/correct-answer-sound-2.wav'
+            playing={winningSoundIsPlaying}
+            rate={1.5}/>
+            <ReactHowler 
+            /* src='src\assets\correct-answer-sound-1.wav' */
+            src='src/assets/incorrect-answer.wav'
+            playing={losingSoundIsPlaying}
+            rate={1}/>
             <ResultScreen/>
             <DisplayGrid gridMatrix={displayGrid} />
             <DrawingGrid

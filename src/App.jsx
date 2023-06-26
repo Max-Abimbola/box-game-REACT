@@ -4,7 +4,12 @@ import Game from './components/Game'
 /* import playSound from './helpers/playSound.jsx' */
 import randomString from './helpers/randomString.js'
 
+
+/* import soundFile from './assets/correct-answer-sound-1.wav' */
+
+
 function App() {
+
   const [stageArray, setStageArray] = useState(randomString(1,null,null))
 
   const [stageNumber, setStageNumber] = useState(0)
@@ -24,9 +29,14 @@ function App() {
     setScore(score + 1)
   }
 
+/*   const playSound = () => {
+    howl.play()
+  } */
+
     return (
       <>
         {showComponent && <Game isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber} score={score} incrementScore={incrementScore}/>}
+        
       </>
     )
 }
