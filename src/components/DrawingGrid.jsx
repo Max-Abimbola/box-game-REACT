@@ -97,7 +97,7 @@ export default function DrawingGrid(props){
             document.removeEventListener('touchstart', handleTouchStart)
             document.removeEventListener('touchend', handleTouchEnd)
         }
-    }, [])
+    }, [mouseDown])
     
     return (
 
