@@ -24,9 +24,6 @@ export default function Game(props){
     const [winningSoundIsPlaying, setWinningSoundIsPlaying] = useState(false)
     const [losingSoundIsPlaying, setLosingSoundIsPlaying] = useState(false)
 
-    const score = useRef(0)
-    const [scoreDisplay, setScoreDisplay] = useState(0)
-
     const winColorChange = () => {
       const body = document.getElementById('body');
       body.style.backgroundColor = '#65BF63';
@@ -48,56 +45,63 @@ export default function Game(props){
       })
     }
 
+
     useEffect(() => {
-      if (timerIsActive) {
 
 
-        const intervalId = setInterval(() => {
-          
 
-          
-          if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
-            clearInterval(timerId)
-            setGameState('isLost');
-            console.log('WRONG')
-            setLosingSoundIsPlaying(true)
+      const intervalId = setInterval(() => {
+        
 
-            const body = document.getElementById('body');
-            body.style.backgroundColor = '#AE6767';
-  
-            const highlightedBoxes = document.querySelectorAll('.grid-box');
-  
-            highlightedBoxes.forEach((box) => {
-              box.style.pointerEvents = 'none';
-              if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
-                box.style.backgroundColor = '#962525';
-              }
-            });
-  
-            
-          }
+        
+        if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
+      
+          clearInterval(timerId)
+          setGameState('isLost');
+          setLosingSoundIsPlaying(true)
+
+          const body = document.getElementById('body');
+          body.style.backgroundColor = '#AE6767';
+
+          const highlightedBoxes = document.querySelectorAll('.grid-box');
+
+          highlightedBoxes.forEach((box) => {
+            box.style.pointerEvents = 'none';
+            if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
+              box.style.backgroundColor = '#962525';
+            }
+          });
 
           
+        }
 
-          
-        }, 3000);
+        
 
-        setTimerId(intervalId);
+        
+      }, 3000);
+
+      return () => {
+        clearTimeout(intervalId)
+        setTimerId(intervalId)
       }
+
+      ;
+
   
 /*         return () => {
 
           clearInterval(timerId);
       }; */
-    }, [drawingGrid, timerIsActive]);
+    }, [drawingGrid]);
   
 
     useEffect(() => {
       if(timerIsActive){
 
         
+
+        
         if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive) {
-          console.log('RIGHT')
           setGameState('isWon');
 
           
@@ -127,7 +131,7 @@ export default function Game(props){
 
           winColorChange()
   
-          const intervalId = setInterval(()=>{
+          const intervalId = setTimeout(()=>{
               clearInterval(intervalId)
               body.style.backgroundColor = ''
               body.style.backgroundColor = '#7B71B8';
@@ -140,9 +144,10 @@ export default function Game(props){
           }
 
       }
+      
 
 
-    }, [drawingGrid, timerIsActive]);
+    }, [drawingGrid]);
 
 
 

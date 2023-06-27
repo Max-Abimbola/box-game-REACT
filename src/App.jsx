@@ -10,7 +10,7 @@ import randomString from './helpers/randomString.js'
 
 function App() {
 
-  const [stageArray, setStageArray] = useState(randomString(1,null,null))
+/*   const [stageArray, setStageArray] = useState(randomString(1,null,null)) */
 
   const [stageNumber, setStageNumber] = useState(0)
 
@@ -22,7 +22,6 @@ function App() {
 
   const isWon = () => {
     setStageNumber(stageNumber + 1)
-/*     playSound() */
     const body = document.getElementById('body');
 
   }
@@ -34,14 +33,12 @@ function App() {
     setScore(score + 1)
   }
 
-/*   const playSound = () => {
-    howl.play()
-  } */
+
 
     return (
       <>
-        <button onClick={toggleSound}>{soundEnabled ? 'Sound Enabled' : ' Sound Disabled'}</button>
-        {showComponent && <Game soundEnabled={soundEnabled} isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber} score={score} incrementScore={incrementScore}/>}
+        <button id='toggle-sound-button' onClick={toggleSound}>{soundEnabled ? 'Sound Enabled' : ' Sound Disabled'}</button>
+        <Game soundEnabled={soundEnabled} isWon={isWon} stageGrid={[[1,0,0],[0,0,0],[0,0,0]]/* randomString(1,null,null) */} key={stageNumber} score={score} incrementScore={incrementScore}/>
         
       </>
     )
