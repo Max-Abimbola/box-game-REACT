@@ -78,7 +78,7 @@ export default function Game(props){
         
 
         
-      }, 3000);
+      }, 300000);
 
       return () => {
         clearTimeout(intervalId)

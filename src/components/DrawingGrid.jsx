@@ -5,6 +5,7 @@ export default function DrawingGrid(props){
 
     const [gridArray, setGridArray] = useState(props.gridMatrix)
     const [mouseDown,setMouseDown] = useState(false)
+    const [touchDown, setTouchDown] = useState(false)
 
     const handleMouseDown = (e) => {
         e.preventDefault()
@@ -37,7 +38,7 @@ export default function DrawingGrid(props){
             let gridArrayCopy = [...gridArray]
     
             gridArray[row][col] === 1 ? gridArrayCopy[row][col] = 0 : gridArrayCopy[row][col] = 1
-    
+            console.log(gridArrayCopy)
             setGridArray(gridArrayCopy)
             props.setDrawingGrid(gridArrayCopy)
         }
@@ -46,9 +47,7 @@ export default function DrawingGrid(props){
 
     const handleTouchStart = (e) => {
         e.preventDefault()
-        console.log('touch start',e)
-
-        setMouseDown(true)
+        setTouchDown(true)
 
         let row = parseInt(e.target.getAttribute('row'))
         let col = parseInt(e.target.getAttribute('col'))
@@ -56,33 +55,30 @@ export default function DrawingGrid(props){
         let gridArrayCopy = [...gridArray]
 
         gridArray[row][col] === 1 ? gridArrayCopy[row][col] = 0 : gridArrayCopy[row][col] = 1
-
         setGridArray(gridArrayCopy)
         props.setDrawingGrid(gridArrayCopy)
 
     }
 
-
     const handleTouchEnd = (e) => {
         e.preventDefault()
-        setMouseDown(false)
+        setTouchDown(false)
     }
 
     const handleTouchMove = (e) => {
         e.preventDefault()
-        if(mouseDown){
+        setTouchDown(true)
+        if(touchDown){
             let row = parseInt(e.target.getAttribute('row'))
             let col = parseInt(e.target.getAttribute('col'))
-    
+
             let gridArrayCopy = [...gridArray]
     
             gridArray[row][col] === 1 ? gridArrayCopy[row][col] = 0 : gridArrayCopy[row][col] = 1
-    
             setGridArray(gridArrayCopy)
             props.setDrawingGrid(gridArrayCopy)
         }
     }
-
 
     useEffect(() => {
         document.addEventListener('mouseover', handleMouseOver)
@@ -97,11 +93,11 @@ export default function DrawingGrid(props){
             document.removeEventListener('mousedown', handleMouseDown)
             document.removeEventListener('mouseup', handleMouseUp)
 
-         document.removeEventListener('touchmove', handleTouchMove)
+            document.removeEventListener('touchmove', handleTouchMove)
             document.removeEventListener('touchstart', handleTouchStart)
             document.removeEventListener('touchend', handleTouchEnd)
         }
-    }, [mouseDown])
+    }, [])
     
     return (
 

@@ -41,7 +41,7 @@ function App() {
 
       </div>
 
-        <Game soundEnabled={soundEnabled} isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber} score={score} incrementScore={incrementScore}/>
+        <Game soundEnabled={soundEnabled} isWon={isWon} stageGrid={[[1,0,0],[0,0,0],[0,0,0]]/* randomString(1,null,null) */} key={stageNumber} score={score} incrementScore={incrementScore}/>
         
       </>
     )
