@@ -18,11 +18,16 @@ function App() {
   
   const [score, setScore] = useState(0)
 
+  const [soundEnabled, setSoundEnabled] = useState(true)
+
   const isWon = () => {
     setStageNumber(stageNumber + 1)
 /*     playSound() */
     const body = document.getElementById('body');
 
+  }
+  const toggleSound = () => {
+    setSoundEnabled(!soundEnabled)
   }
 
   const incrementScore = () => {
@@ -35,7 +40,8 @@ function App() {
 
     return (
       <>
-        {showComponent && <Game isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber} score={score} incrementScore={incrementScore}/>}
+        <button onClick={toggleSound}>{soundEnabled ? 'Sound Enabled' : ' Sound Disabled'}</button>
+        {showComponent && <Game soundEnabled={soundEnabled} isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber} score={score} incrementScore={incrementScore}/>}
         
       </>
     )

@@ -27,13 +27,77 @@ export default function Game(props){
     const score = useRef(0)
     const [scoreDisplay, setScoreDisplay] = useState(0)
 
+    const winColorChange = () => {
+      const body = document.getElementById('body');
+      body.style.backgroundColor = '#65BF63';
 
+      const backgroundTimer = document.getElementById('result-screen')
+      backgroundTimer.style.display = 'none'
+
+
+      const highlightedBoxes = document.querySelectorAll('.grid-box');
+
+      highlightedBoxes.forEach((box) => {
+      box.style.pointerEvents = 'none';
+
+      if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
+          box.style.backgroundColor = 'green';
+      }
+
+      
+      })
+    }
+
+    useEffect(() => {
+      if (timerIsActive) {
+
+
+        const intervalId = setInterval(() => {
+          
+
+          
+          if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
+            clearInterval(timerId)
+            setGameState('isLost');
+            console.log('WRONG')
+            setLosingSoundIsPlaying(true)
+
+            const body = document.getElementById('body');
+            body.style.backgroundColor = '#AE6767';
+  
+            const highlightedBoxes = document.querySelectorAll('.grid-box');
+  
+            highlightedBoxes.forEach((box) => {
+              box.style.pointerEvents = 'none';
+              if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
+                box.style.backgroundColor = '#962525';
+              }
+            });
+  
+            
+          }
+
+          
+
+          
+        }, 3000);
+
+        setTimerId(intervalId);
+      }
+  
+/*         return () => {
+
+          clearInterval(timerId);
+      }; */
+    }, [drawingGrid, timerIsActive]);
+  
 
     useEffect(() => {
       if(timerIsActive){
+
         
         if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive) {
-          
+          console.log('RIGHT')
           setGameState('isWon');
 
           
@@ -42,7 +106,7 @@ export default function Game(props){
           setWinningSoundIsPlaying(true)
   
   
-          const body = document.getElementById('body');
+/*           const body = document.getElementById('body');
           body.style.backgroundColor = '#65BF63';
   
           const backgroundTimer = document.getElementById('result-screen')
@@ -59,7 +123,9 @@ export default function Game(props){
           }
   
           
-          });
+          }); */
+
+          winColorChange()
   
           const intervalId = setInterval(()=>{
               clearInterval(intervalId)
@@ -67,6 +133,7 @@ export default function Game(props){
               body.style.backgroundColor = '#7B71B8';
 
               props.isWon()
+              return
               
 
           },400);
@@ -75,50 +142,10 @@ export default function Game(props){
       }
 
 
-    }, [drawingGrid, displayGrid, timerIsActive, winningSoundIsPlaying]);
+    }, [drawingGrid, timerIsActive]);
 
 
-    useEffect(() => {
-        if (timerIsActive) {
 
-
-          const intervalId = setInterval(() => {
-            setLosingSoundIsPlaying(true)
-
-            
-            if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
-              clearInterval(timerId)
-              setGameState('isLost');
-
-              const body = document.getElementById('body');
-              body.style.backgroundColor = '#AE6767';
-    
-              const highlightedBoxes = document.querySelectorAll('.grid-box');
-    
-              highlightedBoxes.forEach((box) => {
-                box.style.pointerEvents = 'none';
-                if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
-                  box.style.backgroundColor = '#962525';
-                }
-              });
-    
-              
-            }
-
-            
-
-            
-          }, 3000);
-
-          setTimerId(intervalId);
-        }
-    
-/*         return () => {
- 
-            clearInterval(timerId);
-        }; */
-      }, [timerIsActive, drawingGrid, displayGrid]);
-    
 
 
 
