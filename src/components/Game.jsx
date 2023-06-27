@@ -50,14 +50,14 @@ export default function Game(props){
 
 
 
-      const intervalId = setInterval(() => {
+      const intervalId = setTimeout(() => {
         
 
         
         if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
       
-          clearInterval(timerId)
-          setGameState('isLost');
+
+
           setLosingSoundIsPlaying(true)
 
           const body = document.getElementById('body');
@@ -92,7 +92,7 @@ export default function Game(props){
 
           clearInterval(timerId);
       }; */
-    }, [drawingGrid]);
+    }, []);
   
 
     useEffect(() => {
@@ -131,7 +131,7 @@ export default function Game(props){
 
           winColorChange()
   
-          const intervalId = setTimeout(()=>{
+          const intervalId = setInterval(()=>{
               clearInterval(intervalId)
               body.style.backgroundColor = ''
               body.style.backgroundColor = '#7B71B8';
@@ -141,9 +141,17 @@ export default function Game(props){
               
 
           },400);
+
+          return () => {
+            clearTimeout(intervalId)
+            setTimerId(intervalId)
+          }
           }
 
+          
+
       }
+
       
 
 
