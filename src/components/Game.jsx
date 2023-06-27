@@ -171,9 +171,7 @@ export default function Game(props){
           
           playing={true}/> */}
 
-          <div
-            id='game-container'
-          >
+          <div id='game-container'>
             <ReactHowler 
             /* src='src\assets\correct-answer-sound-1.wav' */
             src='src/assets/correct-answer-sound-2.wav'
@@ -192,6 +190,7 @@ export default function Game(props){
               setTimerIsActive={setTimerIsActive}
             />
             <h1 id='score-display'>{props.score}</h1>
+            {console.log()}
           </div>
         </>
       );
