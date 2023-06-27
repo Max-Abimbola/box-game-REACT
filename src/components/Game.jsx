@@ -190,7 +190,6 @@ export default function Game(props){
               setTimerIsActive={setTimerIsActive}
             />
             <h1 id='score-display'>{props.score}</h1>
-            {console.log()}
           </div>
         </>
       );

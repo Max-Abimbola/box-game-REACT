@@ -1,3 +1,5 @@
 #toggle-sound-button {
     position: absolute;
+    display:grid;
+    left: 50%;
 }
