@@ -78,7 +78,7 @@ export default function Game(props){
         
 
         
-      }, 300000);
+      }, 3000);
 
       return () => {
         clearTimeout(intervalId)
@@ -175,11 +175,13 @@ export default function Game(props){
             <ReactHowler 
             /* src='src\assets\correct-answer-sound-1.wav' */
             src='src/assets/correct-answer-sound-2.wav'
+/*             src='https://github.com/Max-Abimbola/box-game-REACT/blob/master/src/assets/correct-answer-sound-2.wav' */
             playing={winningSoundIsPlaying}
             rate={1.5}/>
             <ReactHowler 
             /* src='src\assets\correct-answer-sound-1.wav' */
             src='src/assets/incorrect-answer.wav'
+           /*  src='https://github.com/Max-Abimbola/box-game-REACT/blob/master/src/assets/incorrect-answer.wav' */
             playing={losingSoundIsPlaying}
             rate={1}/>
             <ResultScreen/>

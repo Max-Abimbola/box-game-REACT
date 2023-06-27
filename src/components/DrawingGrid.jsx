@@ -38,7 +38,6 @@ export default function DrawingGrid(props){
             let gridArrayCopy = [...gridArray]
     
             gridArray[row][col] === 1 ? gridArrayCopy[row][col] = 0 : gridArrayCopy[row][col] = 1
-            console.log(gridArrayCopy)
             setGridArray(gridArrayCopy)
             props.setDrawingGrid(gridArrayCopy)
         }
