@@ -1,11 +1,13 @@
 import { useState} from 'react'
 import '../styles/Menu.css'
+
+import matchUrl from '../assets/match-title.png'
 export default function Menu(props){
     return (
         <div className='menu-container'>
             <div className='title-container'>
                 <div id='match-title-container'>
-                    <img id='match-title' src="src/assets/match-title.png" alt="match-title"/>
+                    <img id='match-title' src={matchUrl}/* "src/assets/match-title.png" */ alt="match-title"/>
                 </div>
                 <div id='box-title-container'>
                     <img id='box-title' src="src/assets/box-title.png" alt="box-title" />
