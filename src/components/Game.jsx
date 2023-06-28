@@ -59,12 +59,12 @@ export default function Game(props){
     useEffect(() => {
       const intervalId = setTimeout(() => {
         setTimerIsActive(false)
-        console.log('wtf')
+
+        console.log("Time's up")
       }, time);
 
       return () => {
         clearTimeout(intervalId)
-        setTimerId(intervalId)
       }
       
     }, [displayGrid])
@@ -72,6 +72,7 @@ export default function Game(props){
     useEffect(() => {
            
         if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid) && timerIsActive === false) {
+          setGameState('isLost')
       
 
 
@@ -95,7 +96,7 @@ export default function Game(props){
         
 
 
-    }, [drawingGrid]);
+    }, [displayGrid,drawingGrid,timerIsActive]);
   
 
     useEffect(() => {
@@ -127,7 +128,7 @@ export default function Game(props){
           }
           }
 
-    }, [drawingGrid]);
+    }, [displayGrid,drawingGrid,timerIsActive]);
 
 
 
@@ -140,15 +141,12 @@ export default function Game(props){
 
           <div id='game-container'>
             <ReactHowler 
-            /* src='src\assets\correct-answer-sound-1.wav' */
             src='src/assets/correct-answer-sound-2.wav'
-/*             src='https://github.com/Max-Abimbola/box-game-REACT/blob/master/src/assets/correct-answer-sound-2.wav' */
             playing={winningSoundIsPlaying}
             rate={1.5}/>
             <ReactHowler 
-            /* src='src\assets\correct-answer-sound-1.wav' */
+
             src='src/assets/incorrect-answer.wav'
-           /*  src='https://github.com/Max-Abimbola/box-game-REACT/blob/master/src/assets/incorrect-answer.wav' */
             playing={losingSoundIsPlaying}
             rate={1}/>
             <ResultScreen time={time/1000}/>

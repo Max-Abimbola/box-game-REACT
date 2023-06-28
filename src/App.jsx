@@ -26,18 +26,22 @@ function App() {
 
   const isWon = () => {
     setStageNumber(stageNumber + 1)
-    if(stageNumber >= 10){
+/*     if(stageNumber >= 10){
       setDimensions(3)
-/*       setTime(3) */
+      setTime(3000)
     }
-    if(stageNumber >= 11){
+    if(stageNumber >= 40){
       setDimensions(4)
-/*       setTime(5) */
+      setTime(5000)
     }
-    if(stageNumber >= 12){
+    if(stageNumber >= 50){
       setDimensions(5)
-/*       setTime(6) */
-    }
+      setTime(6000)
+    } */
+
+/*     if(stageNumber >= 1){
+      setDimensions(Math.floor(Math.random() * (6-2)+2))
+    } */
     const body = document.getElementById('body');
 
   }

@@ -9,7 +9,14 @@ const randomString = function (dimensions, difficulty/*TODO: Add difficulty para
         }
         grid.push(row)
     }
-    return grid
+    if(grid !== [[0,0],[0,0]]){
+        return grid
+    }
+    else{
+        randomString(dimensions,null)
+    }
+    
+
 
 }
 export default randomString
