@@ -25,7 +25,7 @@ function App() {
 
   const [dimensions, setDimensions ] = useState(2)
 
-  const [time, setTime] = useState (30000)
+  const [time, setTime] = useState (3000)
 
   const showGameCallback = () => {
     setShowGame(true)
@@ -34,21 +34,32 @@ function App() {
 
   const isWon = () => {
     setStageNumber(stageNumber + 1)
-    if(stageNumber >= 10){
+    if(stageNumber >= 5/* 10 */){
       setDimensions(3)
-      setTime(30000)
+      setTime(3000)
     }
-    if(stageNumber >= 40){
+    if(stageNumber >= 10/* 40 */){
       setDimensions(4)
-      setTime(50000)
+      setTime(5000)
     }
-    if(stageNumber >= 50){
+    if(stageNumber >= 15/* 50 */){
       setDimensions(5)
-      setTime(60000)
+      setTime(6000)
     }
 
-    if(stageNumber >= 60){
-      setDimensions(Math.floor(Math.random() * (6-2)+2))
+    if(stageNumber >= 20/* 60 */){
+      var randInt = Math.floor(Math.random() * (6-2)+2)
+
+      if(randInt === 3){
+        setTime(3)
+      }
+      else if(randInt === 4){
+        setTime(5)
+      }
+      else {
+        setTime(6)
+      }
+      setDimensions(randInt)
     }
 
   }
