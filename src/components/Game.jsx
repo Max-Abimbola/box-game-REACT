@@ -7,22 +7,33 @@ import playSound from '../helpers/playSound.jsx'
 import '../styles/Game.css'
 
 export default function Game(props){
+  const generateInitialDrawingGrid = (dimensions) => {
+    let grid = []
+      for(let row = 0; row < dimensions; row++){
+          let row = []
+          for(let col = 0; col < dimensions; col++){
+              row.push(0)
+          }
+          grid.push(row)
+      }
+      return grid
+  
+  }
 
-    const initialDrawingGrid = [
-            [0,0,0],
-            [0,0,0],
-            [0,0,0],
+  const initialGrid = generateInitialDrawingGrid(props.dimensions)
 
-      ];
+ 
 
     const [stageNumber, setStageNumber] = useState(0)
-    const [drawingGrid, setDrawingGrid] = useState(initialDrawingGrid);
+    const [drawingGrid, setDrawingGrid] = useState(initialGrid);
     const [displayGrid, setDisplayGrid] = useState(props.stageGrid)
     const [gameState, setGameState] = useState('isRunning')
-    const [timerIsActive, setTimerIsActive] = useState(true)
     const [timerId, setTimerId] = useState(null)
     const [winningSoundIsPlaying, setWinningSoundIsPlaying] = useState(false)
     const [losingSoundIsPlaying, setLosingSoundIsPlaying] = useState(false)
+    const [dimensions, setDimensions ] = useState(props.dimensions)
+    const [time, setTime] = useState(props.time)
+    const [timerIsActive, setTimerIsActive] = useState(true)
 
     const winColorChange = () => {
       const body = document.getElementById('body');
@@ -45,16 +56,22 @@ export default function Game(props){
       })
     }
 
+    useEffect(() => {
+      const intervalId = setTimeout(() => {
+        setTimerIsActive(false)
+        console.log('wtf')
+      }, time);
+
+      return () => {
+        clearTimeout(intervalId)
+        setTimerId(intervalId)
+      }
+      
+    }, [displayGrid])
 
     useEffect(() => {
-
-
-
-      const intervalId = setTimeout(() => {
-        
-
-        
-        if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) {
+           
+        if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid) && timerIsActive === false) {
       
 
 
@@ -77,57 +94,19 @@ export default function Game(props){
 
         
 
-        
-      }, 3000);
 
-      return () => {
-        clearTimeout(intervalId)
-        setTimerId(intervalId)
-      }
-
-      ;
-
-  
-/*         return () => {
-
-          clearInterval(timerId);
-      }; */
-    }, []);
+    }, [drawingGrid]);
   
 
     useEffect(() => {
-      if(timerIsActive){
-
         
-
-        
-        if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive) {
+        if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive === true) {
           setGameState('isWon');
 
           
           props.incrementScore()
 
           setWinningSoundIsPlaying(true)
-  
-  
-/*           const body = document.getElementById('body');
-          body.style.backgroundColor = '#65BF63';
-  
-          const backgroundTimer = document.getElementById('result-screen')
-          backgroundTimer.style.display = 'none'
-  
-  
-          const highlightedBoxes = document.querySelectorAll('.grid-box');
-  
-          highlightedBoxes.forEach((box) => {
-          box.style.pointerEvents = 'none';
-  
-          if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
-              box.style.backgroundColor = 'green';
-          }
-  
-          
-          }); */
 
           winColorChange()
   
@@ -137,7 +116,7 @@ export default function Game(props){
               body.style.backgroundColor = '#7B71B8';
 
               props.isWon()
-              return
+      
               
 
           },400);
@@ -147,13 +126,6 @@ export default function Game(props){
             setTimerId(intervalId)
           }
           }
-
-          
-
-      }
-
-      
-
 
     }, [drawingGrid]);
 
@@ -165,11 +137,6 @@ export default function Game(props){
 
       return (
         <>
-{/*           <ReactHowler 
-          src='src\assets\correct-answer-sound-1.wav'
-          
-          
-          playing={true}/> */}
 
           <div id='game-container'>
             <ReactHowler 
@@ -184,13 +151,14 @@ export default function Game(props){
            /*  src='https://github.com/Max-Abimbola/box-game-REACT/blob/master/src/assets/incorrect-answer.wav' */
             playing={losingSoundIsPlaying}
             rate={1}/>
-            <ResultScreen/>
-            <DisplayGrid gridMatrix={displayGrid} />
+            <ResultScreen time={time/1000}/>
+            <DisplayGrid gridMatrix={displayGrid} dimensions={dimensions}/>
             <DrawingGrid
               gridMatrix={drawingGrid}
               setDrawingGrid={setDrawingGrid}
-              setTimerIsActive={setTimerIsActive}
+              dimensions={dimensions}
             />
+            
             <h1 id='score-display'>{props.score}</h1>
           </div>
         </>

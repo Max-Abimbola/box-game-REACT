@@ -45,7 +45,7 @@ export default function DrawingGrid(props){
 
 
     const handleTouchStart = (e) => {
-        e.preventDefault()
+        
         setTouchDown(true)
 
         let row = parseInt(e.target.getAttribute('row'))
@@ -65,7 +65,7 @@ export default function DrawingGrid(props){
     }
 
     const handleTouchMove = (e) => {
-        e.preventDefault()
+        
         setTouchDown(true)
         if(touchDown){
             let row = parseInt(e.target.getAttribute('row'))
@@ -101,7 +101,10 @@ export default function DrawingGrid(props){
     return (
 
         <>
-            <div className='drawing-grid-container'>
+            <div 
+            style={{gridTemplateRows: `repeat(${props.dimensions},1fr)`,
+                gridTemplateColumns: `repeat(${props.dimensions},1fr)`}}
+            className='drawing-grid-container'>
                 {
                     gridArray.map((row, rowIndex) => (
                             row.map((col, colIndex) => (

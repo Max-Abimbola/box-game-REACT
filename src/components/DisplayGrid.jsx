@@ -7,7 +7,10 @@ export default function DisplayGrid(props){
 
     return (
         <>
-            <div className='display-grid-container'>
+            <div
+            style={{gridTemplateRows: `repeat(${props.dimensions},1fr)`,
+            gridTemplateColumns: `repeat(${props.dimensions},1fr)`}}
+            className='display-grid-container'>
                 {
                     gridArray.map((row, rowIndex) => (
                             row.map((col, colIndex) => (

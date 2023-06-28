@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './styles/App.css'
 import Game from './components/Game'
 /* import playSound from './helpers/playSound.jsx' */
@@ -20,11 +20,28 @@ function App() {
 
   const [soundEnabled, setSoundEnabled] = useState(false)
 
+  const [dimensions, setDimensions ] = useState(2)
+
+  const [time, setTime] = useState (3000)
+
   const isWon = () => {
     setStageNumber(stageNumber + 1)
+    if(stageNumber >= 10){
+      setDimensions(3)
+/*       setTime(3) */
+    }
+    if(stageNumber >= 11){
+      setDimensions(4)
+/*       setTime(5) */
+    }
+    if(stageNumber >= 12){
+      setDimensions(5)
+/*       setTime(6) */
+    }
     const body = document.getElementById('body');
 
   }
+
   const toggleSound = () => {
     setSoundEnabled(!soundEnabled)
   }
@@ -37,11 +54,14 @@ function App() {
 
     return (
       <>
-      <div>
-
-      </div>
-
-        <Game soundEnabled={soundEnabled} isWon={isWon} stageGrid={randomString(1,null,null)} key={stageNumber} score={score} incrementScore={incrementScore}/>
+        <Game soundEnabled={soundEnabled} 
+              isWon={isWon} stageGrid={randomString(dimensions,null,null)}
+              key={stageNumber} 
+              score={score} 
+              incrementScore={incrementScore} 
+              dimensions={dimensions}
+              time={time}
+        />
         
       </>
     )

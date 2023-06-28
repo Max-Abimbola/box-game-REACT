@@ -32,8 +32,6 @@
     .drawing-grid-container {
         position:absolute;
         display: grid;
-        grid-template-rows: repeat(3,1fr);
-        grid-template-columns: repeat(3,1fr);
         height: 30vh;
         width: 60vw;
         top:70%;
