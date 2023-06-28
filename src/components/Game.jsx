@@ -6,6 +6,9 @@ import ReactHowler from 'react-howler'
 import playSound from '../helpers/playSound.jsx'
 import '../styles/Game.css'
 
+import correctUrl from '../assets/correct-answer-sound-2.wav'
+import incorrectUrl from '../assets/incorrect-answer.wav'
+
 export default function Game(props){
   const generateInitialDrawingGrid = (dimensions) => {
     let grid = []
@@ -141,12 +144,12 @@ export default function Game(props){
 
           <div id='game-container'>
             <ReactHowler 
-            src='src/assets/correct-answer-sound-2.wav'
+            src={correctUrl}
             playing={winningSoundIsPlaying}
             rate={1.5}/>
             <ReactHowler 
 
-            src='src/assets/incorrect-answer.wav'
+            src={incorrectUrl}
             playing={losingSoundIsPlaying}
             rate={1}/>
             <ResultScreen time={time/1000}/>
