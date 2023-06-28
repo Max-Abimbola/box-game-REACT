@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './styles/App.css'
 import Game from './components/Game'
+import Menu from './components/Menu'
 /* import playSound from './helpers/playSound.jsx' */
 import randomString from './helpers/randomString.js'
 
@@ -14,7 +15,9 @@ function App() {
 
   const [stageNumber, setStageNumber] = useState(0)
 
-  const [showComponent, setShowComponent] = useState(true)
+  const [showGame, setShowGame] = useState(false)
+
+  const [showMenu, setShowMenu] = useState(true)
   
   const [score, setScore] = useState(0)
 
@@ -22,21 +25,26 @@ function App() {
 
   const [dimensions, setDimensions ] = useState(2)
 
-  const [time, setTime] = useState (3000)
+  const [time, setTime] = useState (30000)
+
+  const showGameCallback = () => {
+    setShowGame(true)
+    setShowMenu(false)
+  }
 
   const isWon = () => {
     setStageNumber(stageNumber + 1)
     if(stageNumber >= 10){
       setDimensions(3)
-      setTime(3000)
+      setTime(30000)
     }
     if(stageNumber >= 40){
       setDimensions(4)
-      setTime(5000)
+      setTime(50000)
     }
     if(stageNumber >= 50){
       setDimensions(5)
-      setTime(6000)
+      setTime(60000)
     }
 
     if(stageNumber >= 60){
@@ -57,14 +65,15 @@ function App() {
 
     return (
       <>
-        <Game soundEnabled={soundEnabled} 
-              isWon={isWon} stageGrid={randomString(dimensions,null,null)}
-              key={stageNumber} 
-              score={score} 
-              incrementScore={incrementScore} 
-              dimensions={dimensions}
-              time={time}
-        />
+        {showMenu && <Menu showGame={showGameCallback}/>}
+        {showGame && <Game soundEnabled={soundEnabled} 
+                          isWon={isWon} stageGrid={randomString(dimensions,null,null)}
+                          key={stageNumber} 
+                          score={score} 
+                          incrementScore={incrementScore} 
+                          dimensions={dimensions}
+                          time={time}
+        />}
         
       </>
     )
