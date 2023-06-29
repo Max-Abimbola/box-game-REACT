@@ -161,7 +161,7 @@
         display:grid;
         position:absolute;
         justify-content: center;
-        top:60%;
+        top:50%;
         left:30%;
         grid-template-rows: repeat(2,auto);
         width:100vw;
