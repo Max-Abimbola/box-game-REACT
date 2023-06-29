@@ -10,16 +10,14 @@ export default function Menu(props){
     return (
         <div className='menu-container'>
             <div className='title-container'>
-                <div id='match-title-container'>
-                    <img id='match-title' src={matchUrl} alt="match-title"/>
-                </div>
-                <div id='box-title-container'>
-                    <img id='box-title' src={boxUrl} alt="box-title" />
+                <div id='match-title'>
+                    MATCHBOX
                 </div>
             </div>
             <div className='buttons-container'>
-                <div id='play-button-container'><img onClick={props.showGame} id='play-button' src={playUrl} alt="play-button"/></div>
-                <div id='tutorial-button-container'><img id='tutorial-button' src={tutorialUrl} alt="tutorial-button"  /></div>
+                <div id='play-button' onClick={props.showGame}>PLAY</div>
+                <div id='tutorial-button' onClick={props.showTutorial}>TUTORIAL</div>
+{/*                 <div id='gamemodes-button'>GAMEMODES</div> */}
             </div>
 
         </div>

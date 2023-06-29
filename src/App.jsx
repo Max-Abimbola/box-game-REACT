@@ -9,6 +9,7 @@ import randomString from './helpers/randomString.js'
 import  { v4 as uuidv4} from 'uuid'
 import selectUrl from './assets/select-sound.mp3'
 import DisplayGrid from './components/DisplayGrid'
+import Tutorial from './components/Tutorial'
 
 
 /* import soundFile from './assets/correct-answer-sound-1.wav' */
@@ -25,6 +26,8 @@ function App() {
   const [showGame, setShowGame] = useState(false)
 
   const [showMenu, setShowMenu] = useState(true)
+
+  const [showTutorial, setShowTutorial] = useState(false)
   
   const [score, setScore] = useState(0)
 
@@ -43,25 +46,33 @@ function App() {
     setShowMenu(false)
   }
 
+  const showTutorialCallback = () => {
+    setShowMenu(!showMenu)
+    setShowTutorial(!showTutorial)
+/*     setShowMenu(false)
+    setShowTutorial(true) */
+    
+  }
+
   const isWon = () => {
     setStageNumber(stageNumber + 1)
 
-    if(10 >= stageNumber >= 1){
+    if(10 >= score  >= 1){
       setTime(1500)
       setDimensions(2)
     }
 
-    else if(stageNumber >= 10){
+    else if(score  >= 10){
       setTime(3000)
       setDimensions(3)
     }
 
-    else if(stageNumber >= 30){
+    else if(score >= 30){
       setTime(5000)
       setDimensions(4)
     }
 
-    if(stageNumber >= 40){
+    if(score >= 40){
       var randInt = Math.floor(Math.random() * (5-2)+2)
 
       if(randInt === 2){
@@ -100,6 +111,7 @@ function App() {
     body.style.backgroundColor = ''
     body.style.backgroundColor = '#7B71B8';
     setScore(0)
+
     setShowGame(false)
     setShowMenu(true)
   }
@@ -109,7 +121,7 @@ function App() {
 
     return (
       <>
-        {showMenu && <Menu showGame={showGameCallback}/>}
+        {showMenu && <Menu showGame={showGameCallback} showTutorial={showTutorialCallback}/>}
         {showGame && <Game soundEnabled={soundEnabled} 
                           isWon={isWon} 
                           stageGrid={randomString(dimensions,null,null)}
@@ -122,6 +134,7 @@ function App() {
                           exit={exit}
             
         />}
+        {showTutorial && <Tutorial showTutorial={showTutorialCallback}/> }
         
       </>
     )
