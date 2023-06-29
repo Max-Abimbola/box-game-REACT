@@ -26,7 +26,7 @@
     #score-display {
         position: absolute;
         display: grid;
-        left:50%;
+        left:45%;
         font-family: 'Press Start 2P', cursive;
         top:5%;
     }
@@ -39,6 +39,9 @@
     #exit-button {
         font-family: 'Press Start 2P', cursive;
         height:4em;
+        text-decoration: none;
+        border-radius: 5px;
+        color: Black;
 
     }
 
@@ -82,7 +85,9 @@
     #exit-button {
         font-family: 'Press Start 2P', cursive;
         height:4em;
-
+        text-decoration: none;
+        border-radius: 5px;
+        color: Black;
     }
 
 

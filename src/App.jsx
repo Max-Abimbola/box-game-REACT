@@ -35,7 +35,7 @@ function App() {
 
   const [dimensions, setDimensions ] = useState(2)
 
-  const [time, setTime] = useState (1500)
+  const [time, setTime] = useState (1000)
   
   const [stageArray , setStageArray] = useState(randomString(dimensions,null,null))
 
@@ -58,17 +58,17 @@ function App() {
     setStageNumber(stageNumber + 1)
 
     if(10 >= score  >= 1){
-      setTime(1500)
+      setTime(1000)
       setDimensions(2)
     }
 
     else if(score  >= 10){
-      setTime(3000)
+      setTime(2000)
       setDimensions(3)
     }
 
     else if(score >= 30){
-      setTime(5000)
+      setTime(3400)
       setDimensions(4)
     }
 
@@ -76,15 +76,15 @@ function App() {
       var randInt = Math.floor(Math.random() * (5-2)+2)
 
       if(randInt === 2){
-        setTime(2000)
+        setTime(1000)
         setDimensions(randInt)
       }
       else if(randInt === 3){
-        setTime(3000)
+        setTime(2000)
         setDimensions(randInt)
       }
       else {
-        setTime(5000)
+        setTime(3400)
         setDimensions(randInt)
       }
     }
@@ -100,7 +100,7 @@ function App() {
     setShowGame(true)
     setScore(0);
     setDimensions(2);
-    setTime(3000);
+    setTime(1000);
     setStageArray(randomString(dimensions, null, null));
     const body = document.querySelector('body');
     body.style.backgroundColor = '#7B71B8';
