@@ -16,7 +16,6 @@ export default function DrawingGrid(props){
         let col = parseInt(e.target.getAttribute('col'))
 
         let gridArrayCopy = [...gridArray]
-
         gridArray[row][col] === 1 ? gridArrayCopy[row][col] = 0 : gridArrayCopy[row][col] = 1
 
         setGridArray(gridArrayCopy)

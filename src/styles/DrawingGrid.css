@@ -18,12 +18,14 @@
     transform: translate(-50%,-80%);
     box-sizing: border-box;
     grid-gap:0;
+    
 
 
 
 }
 
 .grid-box {
+    border: 2px dashed rgb(0, 0, 0)
 }
 
 

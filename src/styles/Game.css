@@ -27,9 +27,9 @@
 @media (max-width: 773px) {
     #score-display {
         position: absolute;
-        display: block;
-        left:50%;
         top: 10%;
+        display:grid;
+        justify-content: center;
     }
 
 

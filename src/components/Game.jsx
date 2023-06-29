@@ -9,6 +9,7 @@ import '../styles/Game.css'
 import correctUrl from '../assets/correct-answer-sound-2.wav'
 import incorrectUrl from '../assets/incorrect-answer.wav'
 
+
 export default function Game(props){
   const generateInitialDrawingGrid = (dimensions) => {
     let grid = []
@@ -34,6 +35,7 @@ export default function Game(props){
     const [timerId, setTimerId] = useState(null)
     const [winningSoundIsPlaying, setWinningSoundIsPlaying] = useState(false)
     const [losingSoundIsPlaying, setLosingSoundIsPlaying] = useState(false)
+
     const [dimensions, setDimensions ] = useState(props.dimensions)
     const [time, setTime] = useState(props.time)
     const [timerIsActive, setTimerIsActive] = useState(true)
@@ -59,6 +61,7 @@ export default function Game(props){
       })
     }
 
+
     useEffect(() => {
       const intervalId = setTimeout(() => {
         setTimerIsActive(false)
@@ -70,14 +73,14 @@ export default function Game(props){
         clearTimeout(intervalId)
       }
       
-    }, [displayGrid])
+    }, [displayGrid,time])
 
     useEffect(() => {
            
-        if (JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid) && timerIsActive === false) {
+        if ((JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) && timerIsActive === false) {
           setGameState('isLost')
       
-
+          console.log('LOSER!')
 
           setLosingSoundIsPlaying(true)
 
@@ -104,7 +107,7 @@ export default function Game(props){
 
     useEffect(() => {
         
-        if (JSON.stringify(drawingGrid) === JSON.stringify(displayGrid) && timerIsActive === true) {
+        if ((JSON.stringify(drawingGrid) === JSON.stringify(displayGrid)) && timerIsActive === true) {
           setGameState('isWon');
 
           
@@ -147,13 +150,18 @@ export default function Game(props){
             src={correctUrl}
             playing={winningSoundIsPlaying}
             rate={1.5}/>
-            <ReactHowler 
 
+            <ReactHowler 
             src={incorrectUrl}
             playing={losingSoundIsPlaying}
             rate={1}/>
+
+
+
             <ResultScreen time={time/1000}/>
-            <DisplayGrid gridMatrix={displayGrid} dimensions={dimensions}/>
+            <DisplayGrid gridMatrix={displayGrid} 
+                         dimensions={dimensions} 
+            />
             <DrawingGrid
               gridMatrix={drawingGrid}
               setDrawingGrid={setDrawingGrid}
@@ -161,6 +169,8 @@ export default function Game(props){
             />
             
             <h1 id='score-display'>{props.score}</h1>
+            <button onClick={props.playAgain} >Play Again</button>
+            <button>Exit</button>
           </div>
         </>
       );
