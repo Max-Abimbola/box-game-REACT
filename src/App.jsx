@@ -99,6 +99,7 @@ function App() {
     const body = document.querySelector('body')
     body.style.backgroundColor = ''
     body.style.backgroundColor = '#7B71B8';
+    setScore(0)
     setShowGame(false)
     setShowMenu(true)
   }
