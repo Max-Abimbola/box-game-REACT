@@ -34,6 +34,10 @@
     #play-again-button{
         font-family: 'Press Start 2P', cursive;
         height:4em;
+        height:4em;
+        text-decoration: none;
+        border-radius: 5px;
+        color: Black;
     }
 
     #exit-button {
@@ -80,6 +84,9 @@
     #play-again-button{
         font-family: 'Press Start 2P', cursive;
         height:4em;
+        text-decoration: none;
+        border-radius: 5px;
+        color: Black;
     }
 
     #exit-button {
