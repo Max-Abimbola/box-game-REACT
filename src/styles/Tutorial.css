@@ -162,6 +162,8 @@
     
     #exit-button {
         grid-row-start:6;
+        text-decoration: none;
+        border-radius: 5px;
     }
     
 
