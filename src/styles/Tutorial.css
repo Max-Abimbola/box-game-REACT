@@ -27,13 +27,13 @@
 }
 #win-game-img {
     height:25vh;
-    width:25vw;
+    width:15vw;
     grid-row-start: 2;
 }
 
 #lose-game-img {
     height:25vh;
-    width:25vw;
+    width:15vw;
     grid-row-start: 3;
     grid-column-start: 2;
 }
@@ -98,13 +98,13 @@
     }
     #win-game-img {
         height:25vh;
-        width:25vw;
+        width:30vw;
         grid-row-start: 2;
     }
     
     #lose-game-img {
         height:25vh;
-        width:25vw;
+        width:30vw;
         grid-row-start: 3;
         grid-column-start: 2;
     }
