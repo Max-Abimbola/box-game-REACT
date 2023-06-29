@@ -28,7 +28,6 @@ export default function Game(props){
 
  
 
-    const [stageNumber, setStageNumber] = useState(0)
     const [drawingGrid, setDrawingGrid] = useState(initialGrid);
     const [displayGrid, setDisplayGrid] = useState(props.stageGrid)
     const [gameState, setGameState] = useState('isRunning')
@@ -61,6 +60,22 @@ export default function Game(props){
       })
     }
 
+    const losingColorChange = () => {
+      const body = document.getElementById('body');
+      body.style.backgroundColor = '#AE6767';
+
+      const highlightedBoxes = document.querySelectorAll('.grid-box');
+
+      highlightedBoxes.forEach((box) => {
+        box.style.pointerEvents = 'none';
+        if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
+          box.style.backgroundColor = '#962525';
+        }
+      });
+
+
+    }
+
 
     useEffect(() => {
       const intervalId = setTimeout(() => {
@@ -70,10 +85,11 @@ export default function Game(props){
       }, time);
 
       return () => {
+        console.log('time')
         clearTimeout(intervalId)
       }
       
-    }, [displayGrid,time])
+    }, [displayGrid])
 
     useEffect(() => {
            
@@ -83,20 +99,7 @@ export default function Game(props){
           console.log('LOSER!')
 
           setLosingSoundIsPlaying(true)
-
-          const body = document.getElementById('body');
-          body.style.backgroundColor = '#AE6767';
-
-          const highlightedBoxes = document.querySelectorAll('.grid-box');
-
-          highlightedBoxes.forEach((box) => {
-            box.style.pointerEvents = 'none';
-            if (box.style.backgroundColor === 'rgb(60, 58, 171)') {
-              box.style.backgroundColor = '#962525';
-            }
-          });
-
-          
+          losingColorChange()
         }
 
         
@@ -109,11 +112,13 @@ export default function Game(props){
         
         if ((JSON.stringify(drawingGrid) === JSON.stringify(displayGrid)) && timerIsActive === true) {
           setGameState('isWon');
+          const body = document.querySelector('body')
 
+          setWinningSoundIsPlaying(true)
           
           props.incrementScore()
 
-          setWinningSoundIsPlaying(true)
+          
 
           winColorChange()
   
@@ -121,6 +126,7 @@ export default function Game(props){
               clearInterval(intervalId)
               body.style.backgroundColor = ''
               body.style.backgroundColor = '#7B71B8';
+              console.log('fdf')
 
               props.isWon()
       
@@ -129,7 +135,7 @@ export default function Game(props){
           },400);
 
           return () => {
-            clearTimeout(intervalId)
+            clearInterval(intervalId)
             setTimerId(intervalId)
           }
           }
@@ -169,6 +175,7 @@ export default function Game(props){
             />
             
             <h1 id='score-display'>{props.score}</h1>
+            <h1>{props.key}</h1>
             <button onClick={props.playAgain} >Play Again</button>
             <button>Exit</button>
           </div>

@@ -31,11 +31,10 @@ function App() {
 
   const [dimensions, setDimensions ] = useState(2)
 
-  const [time, setTime] = useState (300)
+  const [time, setTime] = useState (1500)
   
   const [stageArray , setStageArray] = useState(randomString(dimensions,null,null))
 
-  const [resetGame, setResetGame ] = useState(false)
 
 
   const showGameCallback = () => {
@@ -45,17 +44,23 @@ function App() {
 
   const isWon = () => {
     setStageNumber(stageNumber + 1)
-    
-/*     if(stageNumber >= 5){
-      setDimensions(3)
-      setTime(3000)
-    }
-    if(stageNumber >= 10){
-      setDimensions(4)
-      setTime(5000)
-    } */
 
-    if(stageNumber >= 1){
+    if(10 >= stageNumber >= 1){
+      setTime(1500)
+      setDimensions(2)
+    }
+
+    else if(stageNumber >= 10){
+      setTime(3000)
+      setDimensions(3)
+    }
+
+    else if(stageNumber >= 30){
+      setTime(5000)
+      setDimensions(4)
+    }
+
+    if(stageNumber >= 40){
       var randInt = Math.floor(Math.random() * (5-2)+2)
 
       if(randInt === 2){
@@ -74,31 +79,21 @@ function App() {
 
   }
 
-  const toggleSound = () => {
-    setSoundEnabled(!soundEnabled)
-  }
 
   const incrementScore = () => {
     setScore(score + 1)
   }
   const playAgain = () => {
-    setResetGame(true);
+    setStageNumber(stageNumber+1);
+    setShowGame(true)
+    setScore(0);
+    setDimensions(2);
+    setTime(3000);
+    setStageArray(randomString(dimensions, null, null));
+    const body = document.querySelector('body');
+    body.style.backgroundColor = '#7B71B8';
   };
 
-  useEffect(() => {
-    if (resetGame) {
-      console.log('SOIFNISONFINSOFISFHIOSIFHOSIHFIOSH')
-      setStageNumber(1);
-      setScore(0);
-      setSoundEnabled(true);
-      setDimensions(2);
-      setTime(3000);
-      setStageArray(randomString(dimensions, null, null));
-      const body = document.querySelector('body');
-      body.style.backgroundColor = '#7B71B8';
-      setResetGame(false);
-    }
-  }, [resetGame]);
 
 
 
@@ -106,14 +101,14 @@ function App() {
       <>
         {showMenu && <Menu showGame={showGameCallback}/>}
         {showGame && <Game soundEnabled={soundEnabled} 
-                          isWon={isWon} stageGrid={randomString(dimensions,null,null)}
-                          key={uuidv4()} 
+                          isWon={isWon} 
+                          stageGrid={randomString(dimensions,null,null)}
+                          key={stageNumber /* key */} 
                           score={score} 
                           incrementScore={incrementScore} 
                           dimensions={dimensions}
                           time={time}
                           playAgain={playAgain}
-                          timer={true}
             
         />}
         
