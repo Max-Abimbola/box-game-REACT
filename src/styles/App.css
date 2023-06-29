@@ -1,5 +1,11 @@
+
+
 #toggle-sound-button {
     position: absolute;
     display:grid;
     left: 50%;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive; 
 }

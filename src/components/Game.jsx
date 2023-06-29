@@ -38,6 +38,8 @@ export default function Game(props){
     const [dimensions, setDimensions ] = useState(props.dimensions)
     const [time, setTime] = useState(props.time)
     const [timerIsActive, setTimerIsActive] = useState(true)
+    
+    const [showButtons, setShowButtons] = useState(false)
 
     const winColorChange = () => {
       const body = document.getElementById('body');
@@ -95,7 +97,7 @@ export default function Game(props){
            
         if ((JSON.stringify(drawingGrid) !== JSON.stringify(displayGrid)) && timerIsActive === false) {
           setGameState('isLost')
-      
+          setShowButtons(true)
           console.log('LOSER!')
 
           setLosingSoundIsPlaying(true)
@@ -176,8 +178,13 @@ export default function Game(props){
             
             <h1 id='score-display'>{props.score}</h1>
             <h1>{props.key}</h1>
-            <button onClick={props.playAgain} >Play Again</button>
-            <button>Exit</button>
+            {
+              showButtons && 
+              <div className='control-buttons-container'>
+                  <button id='play-again-button' onClick={props.playAgain} onTouchStart={props.playAgain} >Play Again</button>
+                  <button id='exit-button' onClick={props.exit} onTouchStart={props.exit}>Exit</button>
+              </div>
+            }
           </div>
         </>
       );

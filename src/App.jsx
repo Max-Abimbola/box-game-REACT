@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react'
 import './styles/App.css'
 import Game from './components/Game'
@@ -94,6 +95,14 @@ function App() {
     body.style.backgroundColor = '#7B71B8';
   };
 
+  const exit = () => {
+    const body = document.querySelector('body')
+    body.style.backgroundColor = ''
+    body.style.backgroundColor = '#7B71B8';
+    setShowGame(false)
+    setShowMenu(true)
+  }
+
 
 
 
@@ -109,6 +118,7 @@ function App() {
                           dimensions={dimensions}
                           time={time}
                           playAgain={playAgain}
+                          exit={exit}
             
         />}
         
