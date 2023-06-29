@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
-import loseGameUrl from '/src/assets/lose-game.mp4'
-import winGameUrl from '/src/assets/win-game.mp4'
+import loseGameUrl from '/src/assets/lose-game.gif'
+import winGameUrl from '/src/assets/win-game.gif'
 import '../styles/Tutorial.css'
 
 export default function Tutorial(props){
@@ -15,8 +15,8 @@ export default function Tutorial(props){
 
                     <p id='tut-4'>Have fun!</p>
                     <p id='tut-5'>-M</p>
-                    <video id='lose-game-video' src={loseGameUrl} autoPlay loop></video>
-                    <video id='win-game-video' src={winGameUrl} autoPlay loop></video>
+                    <img id='lose-game-img' src={loseGameUrl}></img>
+                    <img id='win-game-img' src={winGameUrl}></img>
                     <button onClick={props.showTutorial} id='exit-button'>Menu</button>
             </div>
 

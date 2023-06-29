@@ -25,13 +25,13 @@
     color:white;
     animation: scaleAnimation 6s infinite ease-in-out;
 }
-#win-game-video {
+#win-game-img {
     height:25vh;
     width:25vw;
     grid-row-start: 2;
 }
 
-#lose-game-video {
+#lose-game-img {
     height:25vh;
     width:25vw;
     grid-row-start: 3;
@@ -96,13 +96,13 @@
         left:30px;
         color:white;
     }
-    #win-game-video {
+    #win-game-img {
         height:25vh;
         width:25vw;
         grid-row-start: 2;
     }
     
-    #lose-game-video {
+    #lose-game-img {
         height:25vh;
         width:25vw;
         grid-row-start: 3;
