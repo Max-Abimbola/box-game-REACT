@@ -58,7 +58,7 @@ function App() {
     setStageNumber(stageNumber + 1)
 
     if(10 >= score  >= 1){
-      setTime(1000)
+      setTime(1500)
       setDimensions(2)
     }
 
