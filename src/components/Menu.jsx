@@ -7,7 +7,11 @@ import playUrl from '../assets/play-button.png'
 import tutorialUrl from '../assets/tutorial-button.png'
 
 export default function Menu(props){
+    console.log("Oh so we know how to inspect element?")
+    console.log("good job!")
+    console.log("here's the flag: 9177a1b40e6dd45b415477212f599b13")
     return (
+        
         <div className='menu-container'>
             <div className='title-container'>
                 <div id='match-title'>
@@ -19,10 +23,9 @@ export default function Menu(props){
                 <div id='tutorial-button' onClick={props.showTutorial}>TUTORIAL</div>
             </div>
             <script>
-                console.log("Oh so we know how to inspect element?")
-                conole.log("good job!")
-                console.log("here's the flag: 9177a1b40e6dd45b415477212f599b13")
+
             </script>
         </div>
     )
+
 }

@@ -144,12 +144,6 @@ export default function Game(props){
 
     }, [displayGrid,drawingGrid]);
 
-
-
-
-
-
-
       return (
         <>
 
