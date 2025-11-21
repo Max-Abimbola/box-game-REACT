@@ -49,8 +49,6 @@ function App() {
   const showTutorialCallback = () => {
     setShowMenu(!showMenu)
     setShowTutorial(!showTutorial)
-/*     setShowMenu(false)
-    setShowTutorial(true) */
     
   }
 

@@ -17,9 +17,12 @@ export default function Menu(props){
             <div className='buttons-container'>
                 <div id='play-button' onClick={props.showGame}>PLAY</div>
                 <div id='tutorial-button' onClick={props.showTutorial}>TUTORIAL</div>
-{/*                 <div id='gamemodes-button'>GAMEMODES</div> */}
             </div>
-
+            <script>
+                console.log("Oh so we know how to inspect element?")
+                conole.log("good job!")
+                console.log("here's the flag: 9177a1b40e6dd45b415477212f599b13")
+            </script>
         </div>
     )
 }
